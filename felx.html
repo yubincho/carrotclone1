@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        main {
+            width: 200px;
+            height: 100px;
+            border: 1px solid red;
+            position: relative;
+        }
+
+        main div div .note-num {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 3;
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            text-align: center;
+            background-color: red;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        #notification {
+            /*background-image: url('../images/notification.svg');*/
+            background-color: yellow;
+            position: relative;
+            width: 70px;
+            height: 70px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <main>
+        <div class="alarm">
+            <div id="notification"><span class="note-num" >1</span></div>
+        </div>
+    </main>
+
+</body>
+</html>
