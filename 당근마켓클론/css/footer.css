@@ -34,6 +34,26 @@ footer {
     transform: scale(0.9);
 }
 
+@keyframes icons-둥둥 {
+    0%{
+        transform: translateY(10px);
+    }
+    30%{
+        transform: translateY(10px);
+    }
+    70%{
+        transform: translateY(-10px);
+         }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
 .footer-icons__img {
     width: 30px;
+    animation: 1s icons-둥둥 infinite;
+}
+
+.footer-icons:hover .footer-icons__img {
+    animation: 1s icons-둥둥;
 }
