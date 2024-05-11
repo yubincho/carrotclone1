@@ -5,7 +5,18 @@ const 정답 = "APPLE"
 let index = 0
 let attempts = 0
 
+let timer;
+
 function appStart() {
+
+    const displayGameover = () => {
+        const div = document.createElement("div")
+        div.innerText = '게임이 종료되었습니다'
+        div.style = "display: flex; justify-content: center; align-items: center; position: absolute; top: 40vh; left: 45vw;"
+        document.body.appendChild(div)
+    }
+
+
 
     const nextLine = () => {
         if (attempts === 6) return
@@ -15,6 +26,8 @@ function appStart() {
 
     const gameover = () => {
         window.removeEventListener("keydown", handleKeyDown)
+        displayGameover()
+        clearInterval(timer)
     }
 
     const handleEnterKey = () => {
@@ -40,6 +53,15 @@ function appStart() {
         if (맞은_개수 === 5) gameover()
         else nextLine()
     }
+
+    const handleBackspace = () => {
+        if (index > 0) {
+            const preBlock = document.querySelector(`.board-block[data-index='${attempts}${index - 1}']`)
+            preBlock.innerText = ""
+        }
+        if (index !== 0) index -= 1
+
+    }
     
     const handleKeyDown = (event) => {
         if (index === 5) return;
@@ -50,7 +72,8 @@ function appStart() {
 
         const thisBlock = document.querySelector(`.board-block[data-index='${attempts}${index}']`)
 
-        if (index === 5) {
+        if (event.key === 'Backspace') handleBackspace()
+        else if (index === 5) {
             if (event.key === "Enter") handleEnterKey()
             else return
         } else if (65 <= keyCode <= 90) {
@@ -60,7 +83,7 @@ function appStart() {
 
     }
 
-    let timer;
+
     const startTimer = () => {
         const time = new Date();
 
@@ -73,8 +96,9 @@ function appStart() {
             const H1 = document.querySelector("#timer");
             H1.innerText = `${min}:${sec}`;
         };
-        clearInterval(timer); // 기존 타이머를 정지
-        setInterval(setTime, 1000);
+
+        timer = setInterval(setTime, 1000);
+
     };
     startTimer();
     window.addEventListener("keydown", handleKeyDown);
