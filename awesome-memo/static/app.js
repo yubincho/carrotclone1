@@ -1,4 +1,22 @@
 
+async function deleteMemo(event) {
+    const id = event.target.dataset.id
+    try {
+        const res = await fetch(`/memos/${id}`, {
+            method: "DELETE",
+        });
+        const result = await res.text();
+        console.log("[delete result]", result);  // "성공했습니다"
+        if (res.ok) {
+            readMemo();
+        } else {
+            console.error("메모 삭제에 실패했습니다:", result);
+        }
+    } catch (error) {
+        console.error("메모 삭제 중 오류 발생:", error.message);
+    }
+}
+
 async function editMemo(event) {
     console.log(event.target.dataset.id)
     const id = event.target.dataset.id
@@ -6,7 +24,7 @@ async function editMemo(event) {
     const editInput = prompt("수정할 값을 입력하세요~ ")
     console.log(editInput)
 
-    const res = await fetch(`/memo/${id}`, {
+    const res = await fetch(`/memos/${id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -25,12 +43,19 @@ function displayMemos(memo) {
     const li = document.createElement('li')
     const editBtn = document.createElement('button')
     li.innerText = `[id:${memo.id} ${memo.content}]`
+
     editBtn.innerText = '수정하기'
     editBtn.addEventListener("click", editMemo)
     editBtn.dataset.id = memo.id
 
+    const delBtn = document.createElement('button')
+    delBtn.innerText = '삭제'
+    delBtn.addEventListener("click", deleteMemo)
+    delBtn.dataset.id = memo.id
+
     ul.appendChild(li)
     li.appendChild(editBtn)
+    li.appendChild(delBtn)
 }
 
 async function readMemo() {
