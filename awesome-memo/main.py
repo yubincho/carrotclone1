@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel 
 from fastapi.staticfiles import StaticFiles
+from typing import List, Optional
 
 app = FastAPI()
 
@@ -19,7 +20,7 @@ def create_memo(memo: Memo):
 
 
 @app.get("/memos")
-def read_memos():
+def read_memos(sorted: Optional[str] = None):
     return memos
 
 

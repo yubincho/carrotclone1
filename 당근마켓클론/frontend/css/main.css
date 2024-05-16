@@ -3,14 +3,14 @@ main {
     padding: 30px 20px 30px 20px;
 }
 
-.test {
+/* .test {
     background-color: aquamarine;
     width: 100px;
     height: 100px;
     padding: 10px;
     border: 5px;
     margin: 20px;
-}
+} */
 
 .item-list {
     display: flex;
@@ -73,6 +73,7 @@ main {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    text-decoration: none;
 }
 
 .write-btn:hover {
