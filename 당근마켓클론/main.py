@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, Form, File
+from fastapi import FastAPI, UploadFile, Form, File, Response
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel 
@@ -46,6 +46,24 @@ async def get_items():
         # dict(row) for row in rows : key,value 같은 딕션 타입으로 받음
         # 데이터 serialize 하기 : jsonable_encoder
     return JSONResponse(jsonable_encoder(dict(row) for row in rows))  
+
+
+@app.get("/images/{item_id}")
+async def get_image(item_id):
+    cur = con.cursor()
+    image_bytes = cur.execute(f"""
+                              
+                              SELECT image from items WHERE id={item_id}
+                              
+                              """).fetchone()[0]
+    return Response(content=bytes.fromhex(image_bytes))
+    
+
+
+
+
+
+
 
 
 

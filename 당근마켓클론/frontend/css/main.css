@@ -1,6 +1,6 @@
 
 main {
-    padding: 30px 20px 30px 20px;
+    padding: 30px 20px 100px 20px;
 }
 
 /* .test {
@@ -14,7 +14,7 @@ main {
 
 .item-list {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding: 20px 0 20px 0;
@@ -32,10 +32,15 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /* 이미지 튀어나온 부분 감추기 */
+    overflow: hidden; 
 }
 
 .item-list__img img {
-    width: 50px;
+    /* width: 50px; */
+    width: 100%;
+    height: 100%;
 }
 
 .item-list__info {
