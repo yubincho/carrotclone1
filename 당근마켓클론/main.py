@@ -60,7 +60,10 @@ async def get_image(item_id):
     
 
 
-
+@app.post("/signup")
+def signup(id: Annotated[str, Form()], password: Annotated[str, Form()]):
+    print(id, password)
+    return "200"
 
 
 
