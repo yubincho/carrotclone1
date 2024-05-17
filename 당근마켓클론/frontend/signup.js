@@ -27,12 +27,14 @@ const handleSubmit = async (event) => {
             method: "POST",
             body: formData,
         })
-        console.log("[res.json()]", res.json())
-        const data = res.json()
-        
+        // console.log("[res.json()]", res.json())
+        const data = await res.json()
+
         if (data === '200') {
             div.innerText = "회원가입에 성공했습니다."  
             div.style.color = "blue"
+            alert("회원가입에 성공하였습니다")
+            window.location.pathname = "/login.html"
         } 
     } else {
         div.innerText = "비밀번호가 같지 않습니다."
